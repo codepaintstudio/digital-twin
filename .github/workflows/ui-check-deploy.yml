@@ -7,6 +7,12 @@ on:
     branches:
       - ui-check
 
+# 确保有权限操作 Pages
+permissions:
+  contents: read       # 读取 repo 内容
+  pages: write         # 发布到 GitHub Pages
+  id-token: write      # configure-pages 需要
+
 jobs:
   build-and-deploy:
     name: Build & Deploy
@@ -16,45 +22,37 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      # 1. 签出代码
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. 设置 Node.js 环境
-      - name: Setup Node.js
+      - name: Setup Node.js 18 & cache pnpm
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'pnpm'
+          cache: pnpm
 
-      # 3. 设置 pnpm
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
 
-      # 4. 安装依赖
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 5. 构建项目（假设 vite.config.js 中已正确配置 base）
       - name: Build with Vite
         run: pnpm build
 
-      # 6. 配置 GitHub Pages
-      - name: Configure Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v3
 
-      # 7. 上传构建产物，默认输出到 dist/
-      - name: Upload artifact
+      # ✅ 一定要用 upload-pages-artifact，不要写成 upload-artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./dist
 
-      # 8. 真·部署
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
 
-      # （可选）通知
       - name: 🚀 Deployment complete
         run: echo "Deployed to GitHub Pages from ui-check! 🎉"
