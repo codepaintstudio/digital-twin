@@ -7,7 +7,7 @@ const props = defineProps({
   },
   list: {
     type: Array,
-    default: () => ["", "", "", '', '']
+    default: ()=>["","","",'']
   },
   width: {
     type: String,
@@ -18,25 +18,26 @@ const props = defineProps({
     default: '100%'
   }
 })
+console.log(props.list)
 </script>
 <template>
   <div class="titleList" :style="{ width: props.width, height: props.height }">
-    <div class="list" v-for="item in props.list" :key="item">
+    <div class="list" v-for="item in props.list" :key="item?.id">
       <el-icon class="icon" color="#8cd3d5">
         <Tickets :style="{
           width: '1.6rem',
           height: '2.134rem'
         }" />
       </el-icon>
-      <div class="test">文化和旅游发展专项规划</div>
+      <div class="test">{{item?.title}}</div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .titleList {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 100%;
   // background-color: red;
   display: flex;
   flex-direction: column;

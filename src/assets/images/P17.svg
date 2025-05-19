@@ -1,0 +1,19 @@
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" class="design-iconfont">
+  <g clip-path="url(#piu8plfqy__clip0_88_289)">
+    <path d="M6.05025 15C4.7835 15.53 4 16.2623 4 17.0711C4 18.6887 7.134 20 11 20C14.866 20 18 18.6887 18 17.0711C18 16.2623 17.2165 15.53 15.9497 15" stroke="url(#piu8plfqy__paint0_linear_88_289)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.958 2C14.2487 2 16.917 4.60235 16.917 7.8125C16.917 12.3143 10.958 16.208 10.958 16.208C10.9037 16.1724 5.00001 12.2936 5 7.8125C5 4.60246 7.66746 2.00017 10.958 2ZM11 5.5C9.73436 5.5 8.70801 6.52635 8.70801 7.79199C8.70818 9.05748 9.73447 10.083 11 10.083C12.2655 10.083 13.2918 9.05746 13.292 7.79199C13.292 6.52638 12.2656 5.50004 11 5.5Z" fill="url(#piu8plfqy__paint1_linear_88_289)"/>
+  </g>
+  <defs>
+    <linearGradient id="piu8plfqy__paint0_linear_88_289" x1="11" y1="15" x2="11" y2="20" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#88D3CB"/>
+      <stop offset="1" stop-color="#8ECBC3"/>
+    </linearGradient>
+    <linearGradient id="piu8plfqy__paint1_linear_88_289" x1="11.0001" y1="1.83337" x2="11.0001" y2="16.0417" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#75D3A1"/>
+      <stop offset="1" stop-color="#8CD3D5"/>
+    </linearGradient>
+    <clipPath id="piu8plfqy__clip0_88_289">
+      <path fill="#fff" d="M0 0H22V22H0z"/>
+    </clipPath>
+  </defs>
+</svg>

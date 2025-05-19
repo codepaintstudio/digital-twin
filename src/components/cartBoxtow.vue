@@ -30,11 +30,11 @@ const props = defineProps({
 
 <style scoped>
 .circle-chart-container {
-  width: 605px;
-  height: 320px;
+  width: 60.5rem;
+  height: 32rem;
   position: relative;
   background-color: #142222;
-  border: 1px solid var(--border-default);
+  border: 0.1rem solid var(--border-default);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   display: flex;
@@ -46,9 +46,9 @@ const props = defineProps({
 
 .chart-content {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  height: calc(100% - 42px);
+  height: calc(100% - 4.2rem);
   position: relative;
 }
 

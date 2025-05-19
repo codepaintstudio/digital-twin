@@ -46,11 +46,11 @@ const props = defineProps({
 
 <style scoped>
 .circle-chart-container {
-  width: 605px;
-  height: 320px;
+  width: 60.5rem;
+  height: 32rem;
   position: relative;
   background-color: #142222;
-  border: 1px solid var(--border-default);
+  border: 0.1rem solid var(--border-default);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   display: flex;
@@ -59,30 +59,32 @@ const props = defineProps({
 }
 
 .chart-title {
-  width: 605px;
-  height: 42.51px;
-  border-radius: 8px;
+  width: 60.5rem;
+  height: 4.251rem;
+  border-radius: 0.8rem;
   opacity: 1;
   background: linear-gradient(180deg, rgb(58, 128, 78) 0%, rgba(20, 34, 34, 0) 100%);
   display: flex;
   align-items: center;
-  font-size: 24px;
+  font-size: 2.4rem;
   color: rgba(255, 255, 255, 1);
   font-weight: 400;
   font-family: 'SourceHanSansCN';
-  border-bottom: 1px solid rgba(69, 102, 85, 1);
+  border-bottom: 0.1rem solid rgba(69, 102, 85, 1);
 }
 
 .title-icon {
   display: inline-block;
-  margin: 5px;
+  height:1.5rem;
+  width: 1.5rem;
+  margin: 1rem;
 }
 
 .chart-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: calc(100% - 42px);
+  height: calc(100% - 4.2rem);
   position: relative;
 }
 

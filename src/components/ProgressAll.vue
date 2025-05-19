@@ -49,27 +49,27 @@ const allProps= computed(()=>{
     :style="{width: allProps.width, height: allProps.height}"
   >
     <div
-      v-for="i,index in allProps.data"
-      :key="i"
+      v-for="item,index in allProps.data"
+      :key="item?.id"
       class="progressbars"
       :style="{width: allProps.width}"
     >
       <div
-        v-if="i.icon"
+        v-if="props?.icon"
         class="icons"
       >
-        <radar :icon="i.icon" />
+        <radar :icon="allProps.icon[index]" />
       </div>
       <div
         class="propgresss"
-        :style="{width: i.icon?allProps.progwidth:allProps.width}"
+        :style="{width: allProps.icon?allProps.progwidth:allProps.width}"
       >
         <ProgressBar
           :gradient-color="allProps.colors[index]"
-          :name="'销售进度'"
-          :description="38.5"
-          :percentage="38.5"
-          :width="i.icon?allProps.progwidth:allProps.width"
+          :name="item.title"
+          :description="item.land"
+          :percentage="item.land"
+          :width="allProps.icon?allProps.progwidth:allProps.width"
           :is-max="allProps.isMax"
         />
       </div>
@@ -95,8 +95,8 @@ const allProps= computed(()=>{
       width: 6.4rem;
       height: 6.4rem;
       display: flex;
-      margin-right: 0.1563vw;
-      margin-left: -20px;
+      margin-right: 1rem;
+      margin-left: -2rem;
     }
   }
 }

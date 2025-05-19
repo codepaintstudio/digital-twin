@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" class="screen-container">
+  <div class="screen-container">
     <router-view />
   </div>
 </template>
@@ -9,5 +9,6 @@
   width: 512rem;
   height: 144rem;
   position: absolute;
+  background-image: url('@/assets/images/default-bg.jpg');
 }
 </style>

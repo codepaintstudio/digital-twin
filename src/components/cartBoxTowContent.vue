@@ -17,7 +17,7 @@
     <div class="text">
       <p>{{ text }}</p>
       <div id="count">
-        <span>{{ count / 10 }}</span>
+        <span>{{ Math.floor(count / 10) }}</span>
         <span>{{ count % 10 }}</span>
         <div>个</div>
       </div>

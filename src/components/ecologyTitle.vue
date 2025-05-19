@@ -21,18 +21,19 @@ const props = defineProps({
     :style="{width:props.width,height:props.height}"
   >
     <div
-      v-for="item in 2"
+      v-for="item in props.data"
+      :key= "item.id"
       class="container"
     >
       <div class="titleBox">
         <div class="icon" />
         <div class="title">
-          生态结构
+          {{item.title}}
         </div>
       </div>
    
     <div class="main">
-      <div class="title1" v-for="item in 4">一心</div>
+      <div class="title1" v-for="iten in item?.space" :key="iten.id">{{iten.title}}</div>
     </div>
    </div>
   </div>

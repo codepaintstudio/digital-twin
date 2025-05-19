@@ -4,13 +4,41 @@ const isActive = ref(1)
 const buttonClick = value => {
   isActive.value = value
 }
+
+const data =[
+  {
+    id: 1,
+    name: '目标定位',
+    icon: '../src/assets/images/路径 3.png'
+  },
+  {
+    id: 2,
+    name: '空间结构',
+    icon: '../src/assets/images/P20.svg'
+  },
+  {
+    id: 3,
+    name: '生态结构',
+    icon: '../src/assets/images/P21.svg'
+  },
+  {
+    id: 4,
+    name: '主要交通',
+    icon: '../src/assets/images/P22.svg'
+  },
+  {
+    id: 5,
+    name: '核心指标',
+    icon: '../src/assets/images/P23.svg'
+  }
+]
 </script>
 
 <template>
   <div class="bus">
-    <button v-for="i in 5" :key="i" @click="buttonClick(i)" :class="['button', { buttonClick: isActive === i }]">
-      <img src="../assets/images/路径 3.png" alt="" class="icon" />
-      <div class="test">目标定位</div>
+    <button v-for="i in data" :key="i.id" @click="buttonClick(i.id)" :class="['button', { buttonClick: isActive === i.id }]">
+      <img :src="i?.icon" alt="" class="icon" />
+      <div class="test">{{i.name}}</div>
     </button>
   </div>
 </template>

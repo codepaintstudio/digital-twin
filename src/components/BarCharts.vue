@@ -9,17 +9,18 @@
 
 <script setup>
 import { computed } from 'vue'
-import eChart from './eChart.vue' // 引入基础图表组件
+import eChart from './echart.vue'
+import { PxToRem } from '@/utils/AutoRem'
 
 const props = defineProps({
   // 尺寸配置
   width: {
     type: String,
-    default: '600px'
+    default: '60.5rem'
   },
   height: {
     type: String,
-    default: '200px'
+    default: '24.5rem'
   },
 
   // 数据配置
@@ -65,7 +66,7 @@ const chartOption = computed(() => ({
     // text: props.title,
     left: 'center',
     textStyle: {
-      fontSize: 16,
+      fontSize: PxToRem(16),
       fontWeight: 'bold'
     }
   },
@@ -78,9 +79,9 @@ const chartOption = computed(() => ({
   legend: props.showLegend
     ? {
         data: props.seriesData?.map(s => s.name),
-        top: 10,
-        right: 10,
-        itemGap: 50
+        top: PxToRem(10),
+        right: PxToRem(10),
+        itemGap: PxToRem(50)
       }
     : undefined,
   grid: {
@@ -94,7 +95,8 @@ const chartOption = computed(() => ({
     type: props.horizontal ? 'value' : 'category',
     data: props.horizontal ? undefined : props.xAxisData,
     axisLabel: {
-      rotate: 45
+      // rotate: 45
+      show:false
     },
     axisLine: {
       show: false
@@ -110,7 +112,7 @@ const chartOption = computed(() => ({
       formatter: '{value}%'
     },
     name: '百分比',
-    nameGap: 20,
+    nameGap: PxToRem(20),
     max: 100
   },
   series: props.seriesData?.map((series, index) => ({
@@ -137,7 +139,7 @@ const chartOption = computed(() => ({
           }
         ]
       },
-      borderRadius: [50, 50, 0, 0]
+      borderRadius: [PxToRem(50), PxToRem(50), 0, 0]
     },
     ...(props.horizontal && {
       label: {

@@ -1,4 +1,5 @@
 <script setup>
+import {PxToRem} from '@/utils/AutoRem'
 const props = defineProps({
   isMax: {
     type: Boolean,
@@ -21,11 +22,11 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: '450px'
+    default: '44.8rem'
   },
   height: {
     type: String,
-    default: '25px'
+    default: '2.47rem'
   },
   ortherProps: {
     type: Object,
@@ -68,8 +69,8 @@ onMounted(() => {
     </div>
     <el-progress
       :text-inside="true"
-      :style="{ width: progressStyle.width, height: progressStyle.height }"
-      :stroke-width="15"
+      :style="{ width: progressStyle.width, height: progressStyle.height}"
+      :stroke-width="PxToRem(14)"
       :percentage="percentage"
       status="success"
       :color="progressStyle.gradientColor"

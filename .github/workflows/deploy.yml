@@ -3,12 +3,8 @@ name: Deploy digital-twin
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'build/**'
   pull_request:
     branches: [ main ]
-    paths:
-      - 'build/**'
     types: [closed]
   workflow_dispatch:
 
@@ -23,13 +19,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Verify build directory
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Set pnpm to use Taobao registry
+        run: pnpm config set registry https://registry.npmmirror.com
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Verify dist directory
         run: |
-          if [ ! -d "build" ]; then
-            echo "::error::Build directory 'build' not found!"
+          if [ ! -d "dist" ]; then
+            echo "::error::Build directory 'dist' not found after build!"
             exit 1
           fi
-          echo "✓ Verified build directory"
+          echo "✓ Build successful"
 
       - name: Install tools
         run: |
@@ -63,4 +76,3 @@ jobs:
           echo "=== 同步结果 ==="
           grep "Number of files" rsync.log || echo "无统计信息"
           echo "目标目录大小: $(sshpass -p "$DEPLOY_PASS" ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "du -sh $REMOTE_DIR")"
-

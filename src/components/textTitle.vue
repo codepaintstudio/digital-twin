@@ -1,31 +1,33 @@
 <script setup>
+import P9 from '@/assets/images/P9.png'
+import P16 from '@/assets/images/P16.svg'
+import P17 from '@/assets/images/P17.svg'
+
 const props = defineProps({
-  title: {
-    type: String,
-    default: "世界级水乡人居文明典范"
-  },
   data: {
     type: Object,
   }
 })
+const icon =ref( [P16,P9,P17])
 </script>
 
 <template>
   <div class="text">
     <div class="title">
-      <span>"</span><h1 :style="{margin: '0 2rem'}">世界级水乡人居文明典范</h1><span>"</span>
+      <span>"</span><h1 :style="{margin: '0 2rem'}">{{data?.slogan}}</h1><span>"</span>
     </div>
-    <div :style="{ fontWeight:200,color:'rgb(151, 154, 154)', marginBottom:'1rem'}">共生、共荣、共进、共鸣、共享</div>
+    <div :style="{ fontWeight:200,color:'rgb(151, 154, 154)', marginBottom:'1rem',marginTop:'3rem'}">{{data?.smallSlogan}}</div>
     <div class="main">
       <div
-        v-for="item in 3"
+        v-for="item,index in data?.peculiarity"
+        :key="item.id"
         class="but"
       >
         <img
-          src="../assets/images/point.svg"
+          :src="icon[index]"
           alt=""
         >
-        <div>超级都市圈</div>
+        <div class="test">{{item.test}}</div>
       </div>
     </div>
   </div>
@@ -33,8 +35,9 @@ const props = defineProps({
 
 <style scoped>
 .text{
-  width:100%;
-  height: 22rem;
+  margin-top: 1rem;
+  width: 100%;
+  height: 100%;
   display: flex;
   font-family: "SourceHanSansCN";
   align-items: center;
@@ -42,7 +45,7 @@ const props = defineProps({
   justify-content: space-around;
   font-size: 1.68rem;
   color: #FFF;
-  letter-spacing: 5px;
+  letter-spacing: 0.5rem;
   .title{
     font-size: 2rem;
     display: flex;
@@ -59,6 +62,7 @@ const props = defineProps({
     display: flex;
     align-items: center;
     justify-content: space-around;
+     margin-bottom:2rem;
   }
   .but{
     margin-top: 2rem;
@@ -72,10 +76,11 @@ const props = defineProps({
     justify-content: center;
     align-items: center;
     font-size: 1.854rem;
-    margin-bottom: 2.712rem;
   }
   img{
     margin-right: 1rem;
+    width: 2.192rem;
+    height:  1.854rem;
   }
 }
 </style>

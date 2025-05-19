@@ -9,71 +9,22 @@ import ColumnButton from '@/components/ColumnButton.vue'
 import SeclectBox from '@/components/SeclectBox.vue'
 import cartBoxTowContent from '@/components/cartBoxTowContent.vue'
 import cartBoxOneCentent from '@/components/cartBoxOneCentent.vue'
-const salesData = [
-  { name: '第一季度', value: 125 },
-  { name: '第二季度', value: 180 },
-  { name: '第三季度', value: 150 },
-  { name: '第四季度', value: 210 }
-]
-// 生态保护红线数据
-const ecologicalData = [
-  { label: '数据一', value: 160, percentage: 42.6, unit: 'xx' },
-  { label: '数据二', value: 130, percentage: 37.5, unit: 'xx' },
-  { label: '数据三', value: 90, percentage: 19.9, unit: 'xx' }
-]
-
-// 永久基本农田保有量数据
-const farmlandData = [
-  { label: '数据一', value: 160, percentage: 42.6, unit: '万人' },
-  { label: '数据二', value: 130, percentage: 37.5, unit: '万人' },
-  { label: '数据三', value: 90, percentage: 19.9, unit: '万人' }
-]
-
-// 常住人口数据
-const populationData = [
-  { label: '数据一', value: 160, percentage: 42.6, unit: 'aa' },
-  { label: '数据二', value: 130, percentage: 37.5, unit: 'bb' },
-  { label: '数据三', value: 90, percentage: 19.9, unit: 'cc' }
-]
-const gaugeData = {
-  name: '销售达成率',
-  data: 80
-}
-
-// 建筑用地数据
-const buildingData = [
-  { label: '数据一', value: 160, percentage: 42.6, },
-  { label: '数据二', value: 130, percentage: 37.5, },
-]
-
+import { 
+  Demonstrationarea,
+  AdvanceStartZone,
+  WaterTownshipUnit,
+  Ecologicalprotection,
+  FarmlandHoldings ,
+  BlueGgreenspace ,
+  Widthgreen ,
+  Coverage
+} from '@/server/db'
+import P18 from '@/assets/images/P18.svg'
+import P19 from '@/assets/images/P19.svg'
+import { PxToRem } from '@/utils/AutoRem'
+const siteIcon = ref([P18, P19])
+const CoverageIcon = ['../src/assets/images/P28.svg','../src/assets/images/P25.svg','../src/assets/images/P27.svg']
 const colors = ['linear-gradient(90deg, #503e2a 0%, #cdba55 100%)', 'linear-gradient(90deg, #3d4a30 0%, #3fc894 100%)', 'linear-gradient(90deg, #1c3d2c 0%, #4ca5cd 100%)']
-//cartBoxTowContent文本图片资源
-const Cart2Array = [{
-  text: "规划单元总数",
-  image: {
-    src: '../src/assets/images/P15.png',
-    alt: ''
-  }
-
-},
-{
-  text: "在编规划数量",
-  image: {
-    src: '../src/assets/images/P13.png',
-    alt: ''
-  }
-
-},
-
-{
-  text: "已批规划数量",
-  image: {
-    src: '../src/assets/images/P12.png',
-    alt: ''
-  }
-
-},
-]
 </script>
 <template>
   <div class="main">
@@ -86,47 +37,48 @@ const Cart2Array = [{
         <div class="one">
           <div class="titles">
             <div class="test1">
-              示范区国土空间总体规划
+              {{Demonstrationarea.title}}
             </div>
           </div>
           <div class="onebanner">
-            <CartBoxone :width="'70.8rem'" :height="'24.299rem'">
-              <textTitle></textTitle>
+            <CartBoxone :width="'70.8rem'" :height="'24.299rem'" :title="Demonstrationarea.data.Targeting.title">
+              <textTitle :data="Demonstrationarea.data.Targeting"></textTitle>
             </CartBoxone>
-            <CartBoxone :width="'49.7rem'" :height="'24.299rem'">
-              <titleList></titleList>
+            <CartBoxone :width="'49.7rem'" :height="'24.299rem'" :title="Demonstrationarea.data.Special.title">
+              <titleList :list="Demonstrationarea.data.Special.data"></titleList>
             </CartBoxone>
             <CartBoxtow :width="'39.999rem'" :height="'23.8999rem'">
-              <CircleChart :showPercentage="false" title="生态保护红线" :centerValue="80" :showLegend="true" :legend="'right'"
-                centerLabel="数据数据" :dataItems="ecologicalData" :width="'39.999rem'" :height="'23.8999rem'"
-                :roseType="'pie'" :radius="['35%', '60%']" />
+              <CircleChart :showPercentage="false" :centerValue="Demonstrationarea.data.ecologicalData.total" :showLegend="true" :legend="'right'"
+                centerLabel="数据数据" :dataItems="Demonstrationarea.data.ecologicalData.data" :width="'39.999rem'" :height="'23.8999rem'"
+                :roseType="'pie'" :radius="['50%', '80%']" :isCircle="false" :center="['30%', '50%']" :titleLeft="'23%'" :LabelRight="'5%'"/>
             </CartBoxtow>
             <CartBoxtow :width="'39.999rem'" :height="'23.8999rem'">
-              <ProgressAll :width="'34.78016rem'" :height="'23.8999rem'" :colors="colors">
+              <ProgressAll :width="'34.78016rem'" :height="'23.8999rem'" :colors="colors" :data="Demonstrationarea.data.ProportionUse">
               </ProgressAll>
             </CartBoxtow>
             <CartBoxtow :width="'39.999rem'" :height="'23.8999rem'">
-              <ecologyTitle :width="'39.999rem'" :height="'23.8999rem'"></ecologyTitle>
+              <ecologyTitle :width="'39.999rem'" :height="'23.8999rem'" :data="Demonstrationarea.data.structure"></ecologyTitle>
             </CartBoxtow>
           </div>
         </div>
         <div class="two">
           <div class="titles">
             <div class="test1">
-              先行启动区国土空间总体规划
+              {{AdvanceStartZone.title}}
             </div>
           </div>
           <div class="towbanner">
-            <CartBoxone :width="'39.799rem'" :height="'24.20064rem'">
-              <CircleChart title="生态保护红线" :centerValue="80" :showLegend="false" centerLabel="数据数据"
-                :dataItems="ecologicalData" :width="'7.7734vw'" :height="'24.20064rem'" :isCong="true" />
+            <CartBoxone :width="'39.799rem'" :height="'24.20064rem'" :title="AdvanceStartZone.population.title">
+              <CircleChart :centerValue="AdvanceStartZone.population.ecologicalData.total" :showLegend="false" :centerLabel="AdvanceStartZone.population.ecologicalData.title"
+                :dataItems="AdvanceStartZone.population.ecologicalData.data" :width="'39.799rem'" :height="'24.20064rem'" :isCong="true" :radius="['45%','60%']" :radiusCong="['45%','65%']"/>
             </CartBoxone>
-            <CartBoxone :width="'39.799rem'" :height="'24.20064rem'">
+            <CartBoxone :width="'39.799rem'" :height="'24.20064rem'" :title="AdvanceStartZone.structure.title">
               <cartBoxOneCentent></cartBoxOneCentent>
             </CartBoxone>
-            <CartBoxone :width="'39.799rem'" :height="'24.20064rem'">
+            <CartBoxone :width="'39.799rem'" :height="'24.20064rem'" :title="AdvanceStartZone.site.title">
               <ProgressAll
-                :data="[{ icon: 'icon-1', name: '生态保护红线', value: 80 }, { icon: 'icon-2', name: '生态保护红线', value: 80 }]"
+                :data="AdvanceStartZone.site.data"
+                :icon="siteIcon"
                 :width="'39.799rem'"></ProgressAll>
             </CartBoxone>
           </div>
@@ -134,15 +86,13 @@ const Cart2Array = [{
         <div class="three">
           <div class="titles">
             <div class="test1">
-              水乡单元详细规划
+              {{WaterTownshipUnit.title}}
             </div>
           </div>
           <div class="threebanner">
-            <CartBoxtow v-for="i in Cart2Array" :width="'39.900vw'" :height="'16.571952rem'">
-              <cartBoxTowContent :image="i.image" :text="i.text"></cartBoxTowContent>
+            <CartBoxtow v-for="i in WaterTownshipUnit.data" :width="'39.900vw'" :height="'16.571952rem'">
+              <cartBoxTowContent :image="i.image" :text="i.text" :count="i.count"></cartBoxTowContent>
             </CartBoxtow>
-            <!-- <CartBoxtow :width="'7.793vw'" :height="'11.5083vh'"></CartBoxtow>
-            <CartBoxtow :width="'7.793vw'" :height="'11.5083vh'"></CartBoxtow> -->
           </div>
         </div>
       </div>
@@ -151,52 +101,29 @@ const Cart2Array = [{
           <StructureButton />
         </div>
         <div class="carts">
-          <CartBoxone :width="'60.5rem'" :height="'34.1rem'" :title="'生态保护红线'">
-            <CircleChart :centerValue="80" :showLabel="true" centerLabel="数据数据" :dataItems="ecologicalData"
-              :width="'55.3472rem'" :height="'32.3712rem'" :isCong="true" />
+          <CartBoxone :width="'60.5rem'" :height="'34.1rem'" :title="Ecologicalprotection.title">
+            <CircleChart :centerValue="Ecologicalprotection.total" :showLabel="true" :centerLabel="Ecologicalprotection.centerTitle" :dataItems="Ecologicalprotection.data"
+              :width="'55.3472rem'" :height="'32.3712rem'" :isCong="true" :center="['50%', '40%']" :titleTop="'30%'"/>
           </CartBoxone>
-          <CartBoxone :width="'60.5rem'" :height="'34.1rem'">
-            <CircleChart title="永久基本农田保有量（万亩）" :centerValue="80" centerLabel="总计人口" legend="right"
-              :dataItems="farmlandData" :width="'55.3472rem'" :height="'32.3712rem'" :isCong="true" />
+          <CartBoxone :width="'60.5rem'" :height="'34.1rem'" :title="FarmlandHoldings.title">
+            <CircleChart :centerValue="FarmlandHoldings.total" :centerLabel="FarmlandHoldings.centerTitle" legend="right"
+              :dataItems="FarmlandHoldings.data" :width="'55.3472rem'" :height="'32.3712rem'" :isCong="true" />
           </CartBoxone>
-          <CartBoxone :width="'60.5rem'" :height="'34.1rem'">
-            <BarCharts :x-axis-data="['一月', '二月', '三月', '四月', '五月']" :series-data="[
-              {
-                name: '线上渠道',
-                data: [120, 200, 150, 80, 70],
-                color: '#5470c6',
-                offsetColor: 'rgba(90, 117, 197,0.1)'
-              },
-              {
-                name: '线下渠道',
-                data: [80, 120, 90, 110, 130],
-                color: '#91cc75',
-                offsetColor: 'rgba(145, 204, 117,0.1)'
-              }
-            ]" theme="dark" :horizontal="false" />
+          <CartBoxone :width="'60.5rem'" :height="'34.1rem'" :title="BlueGgreenspace.title">
+            <BarCharts :x-axis-data="BlueGgreenspace.data.xAxisdata" 
+            :series-data="BlueGgreenspace.data.seriesdata" theme="dark" :horizontal="false" />
           </CartBoxone>
           <CartBoxone :width="'60.5rem'" :height="'34.1rem'">
             <gauges></gauges>
           </CartBoxone>
-          <CartBoxone :width="'60.5rem'" :height="'34.1rem'">
-            <BarCharts :x-axis-data="['一月', '二月', '三月', '四月', '五月']" :series-data="[
-              {
-                name: '线上渠道',
-                data: [120, 200, 150, 80, 70],
-                color: '#5470c6',
-                offsetColor: 'rgba(90, 117, 197,0.1)'
-              },
-              {
-                name: '线下渠道',
-                data: [80, 120, 90, 110, 130],
-                color: '#91cc75',
-                offsetColor: 'rgba(145, 204, 117,0.1)'
-              }
-            ]" theme="dark" :horizontal="false" />
+          <CartBoxone :width="'60.5rem'" :height="'34.1rem'" :title="Widthgreen.title">
+            <BarCharts :x-axis-data="Widthgreen.data.xAxisdata" 
+            :series-data="Widthgreen.data.seriesdata" theme="dark" :horizontal="false" />
           </CartBoxone>
           <CartBoxtow :width="'60.5rem'" :height="'34.1rem'">
             <ProgressAll :isMax="true" :progwidth="' 39.88rem'"
-              :data="[{ icon: 'icon-1', name: '生态保护红线', value: 80 }, { icon: 'icon-2', name: '生态保护红线', value: 80 }, { icon: 'icon-3', name: '生态保护红线', value: 80 }]">
+              :icon="CoverageIcon"
+              :data="Coverage.data">
             </ProgressAll>
           </CartBoxtow>
         </div>

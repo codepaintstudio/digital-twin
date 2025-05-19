@@ -1,28 +1,47 @@
 # 数字孪生项目 (Digital Twin)
 
-![Version](https://img.shields.io/badge/version-0.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 ## 项目简介
 
-数字孪生项目是一个基于 Vue.js 和 Element Plus 的现代化 Web 应用，旨在提供高效的数字孪生解决方案。通过实时数据监控、3D 可视化和智能分析，帮助用户更好地理解和管理实体对象的数字映射。
+数字孪生项目是一个基于 Vue.js 和 Element Plus 的现代化大屏展示应用，采用 5120x1440 像素的超宽屏幕分辨率设计。项目通过实时数据监控、数据可视化和智能分析，为用户提供直观、高效的数据展示解决方案。
+
+## 响应式实现方案
+
+项目采用了先进的响应式实现方案，确保在 5120x1440 超宽屏幕上展示最佳效果：
+
+- **固定尺寸容器**：通过 `screen.scss` 设置固定大小的容器，确保布局稳定
+- **自动单位转换**：集成 `postcss-pxtorem` 和 `postcss-px-to-viewport` 插件，自动处理样式单位
+- **Vite 配置优化**：通过 Vite 配置自动处理样式单位，无需手动修改组件代码
+- **固定尺寸布局**：移除动态缩放逻辑，采用固定尺寸布局确保显示效果
 
 ## 功能特点
 
 - 实时数据监控与分析
-- 3D 模型可视化展示
-- 智能预测与异常检测
-- 多维数据展示与交互
-- 响应式设计，支持多种设备访问
+- 多维度数据可视化展示
+- 智能预测与分析系统
+- 交互式数据探索
+- 超宽屏幕优化设计
 
-## 技术栈
+## 技术架构
+
+### 前端核心
 
 - **前端框架**：Vue.js 3.x
-- **UI 组件库**：Element Plus
-- **路由管理**：Vue Router
+- **状态管理**：Vuex 4.x
+- **路由管理**：Vue Router 4.x
+
+### UI 与可视化
+
+- **UI 框架**：Element Plus
+- **数据可视化**：ECharts 5.x
+- **响应式处理**：postcss-pxtorem + postcss-px-to-viewport
+
+### 工程化工具
+
+- **构建工具**：Vite 4.x
 - **HTTP 客户端**：Axios
-- **数据可视化**：ECharts
-- **构建工具**：Vite
 - **代码规范**：ESLint + Prettier
 - **Git 钩子**：Husky + lint-staged
 
@@ -74,26 +93,33 @@ npm run preview:prod
 
 ```
 digital-twin/
-├── .github/            # GitHub 相关配置
-├── .vscode/            # VS Code 配置
-├── public/             # 静态资源
-├── src/                # 源代码
-│   ├── assets/         # 资源文件
-│   ├── components/     # 组件
-│   ├── router/         # 路由配置
-│   ├── services/       # API 服务
-│   ├── store/          # 状态管理
-│   ├── utils/          # 工具函数
-│   ├── views/          # 页面视图
-│   ├── App.vue         # 根组件
-│   └── main.js         # 入口文件
-├── .env.development    # 开发环境变量
-├── .env.production     # 生产环境变量
-├── .env.test           # 测试环境变量
-├── .eslintrc.js        # ESLint 配置
-├── .prettierrc.js      # Prettier 配置
-├── vite.config.js      # Vite 配置
-└── package.json        # 项目配置
+├─ .github/            # GitHub 相关配置
+├─ .vscode/            # VS Code 配置
+├─ public/             # 静态资源
+├─ src/                # 源代码
+│   ├─ assets/         # 资源文件
+│   │   ├─ images/    # 图片资源
+│   │   └─ styles/    # 全局样式
+│   ├─ components/     # 组件
+│   │   ├─ charts/    # 图表组件
+│   │   ├─ common/    # 通用组件
+│   │   └─ layout/    # 布局组件
+│   ├─ router/         # 路由配置
+│   ├─ server/         # 模拟服务数据
+│   ├─ store/          # Vuex 状态管理
+│   ├─ utils/          # 工具函数
+│   │   ├─ AutoRem.js  # 响应式处理
+│   │   └─ request.js  # 请求封装
+│   ├─ views/          # 页面视图
+│   ├─ App.vue         # 根组件
+│   └─ main.js         # 入口文件
+├─ .env.development    # 开发环境变量
+├─ .env.production     # 生产环境变量
+├─ postcss.config.js   # PostCSS 配置
+├─ .eslintrc.js        # ESLint 配置
+├─ .prettierrc.js      # Prettier 配置
+├─ vite.config.js      # Vite 配置
+└─ package.json        # 项目配置
 ```
 
 ## 代码规范

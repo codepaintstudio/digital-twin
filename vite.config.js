@@ -103,8 +103,5 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       drop: isProd ? ['console', 'debugger'] : [],
     },
-    build: {
-      outDir: './build'
-    }
   }
 })
