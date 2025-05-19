@@ -9,4 +9,4 @@ app.use(route)
 app.mount('#app')
 
 
-AutoRem()
+// AutoRem()
