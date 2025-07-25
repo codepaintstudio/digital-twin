@@ -3,6 +3,7 @@ import { ElMessage } from 'element-plus'
 
 const apiUrl = import.meta.env.VITE_API_BASE_URL
 const httpMessages = {
+  
   200: '请求成功',
   201: '资源创建成功',
   202: '请求已接受处理',
